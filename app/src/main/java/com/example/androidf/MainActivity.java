@@ -1,30 +1,52 @@
 package com.example.androidf;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.Utils;
+import com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks;
+import com.bumptech.glide.Glide;
+import com.example.androidf.databinding.ActivityMainBinding;
+import com.example.androidf.networke.HttpMethodsHelper;
+import com.example.androidf.networke.ObserverHelper;
+
 import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button mBtn;
     Button mLogin;
+    ActivityMainBinding mainBinding;
+    ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        mBtn = findViewById(R.id.code_btn);
-        mBtn.setOnClickListener(this);
+        setContentView(mainBinding.getRoot());
+
+//        mBtn = findViewById(R.id.code_btn);
+//        mBtn.setOnClickListener(this);
 
         mLogin = findViewById(R.id.login_btn);
         mLogin.setOnClickListener(this);
 
+        mImageView = mainBinding.image;
+
+        Glide.with(this).load("https://img1.baidu.com/it/u=2285471789,1398773469&fm=26&fmt=auto")
+                .placeholder(R.drawable.ic_launcher_background).into(mImageView);
 
     }
 
@@ -33,27 +55,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v.getId() == R.id.code_btn) {
-            HttpMethodsHelper httpMethods = HttpMethodsHelper.getInstance();
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("telephone","13515483993");
+            hashMap.put("telephone", "13515483993");
+
+            HttpMethodsHelper httpMethods = HttpMethodsHelper.getInstance();
             httpMethods.getVerificationCode(hashMap, new ObserverHelper<Object>(this) {
                 @Override
                 public void onNext(Object obj) {
                     super.onNext(obj);
-                    Toast.makeText(MainActivity.this,"成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "成功", Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
+        } else {
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("telephone","13515483993");
-            hashMap.put("verificationCode","067774");
+            hashMap.put("telephone", "13515483993");
+            hashMap.put("verificationCode", "067774");
 
             HttpMethodsHelper httpMethods = HttpMethodsHelper.getInstance();
             httpMethods.login(hashMap, new ObserverHelper<Object>(this) {
                 @Override
                 public void onNext(Object obj) {
                     super.onNext(obj);
-                    Toast.makeText(MainActivity.this,"成功",Toast.LENGTH_SHORT).show();
+
+                    HashMap<String, Object> resultMap = (HashMap<String, Object>) obj;
+
+                    Toast.makeText(MainActivity.this, resultMap.get("msg").toString(),
+                            Toast.LENGTH_SHORT).show();
                 }
             });
         }
