@@ -20,7 +20,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- GPS定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 联系人 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +29,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidF">
-        <activity android:name=".MainActivity" android:exported="true">
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360"/>
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640"/>
+        <activity
+            android:name=".RecyclerViewActivity"
+            android:exported="true"
+            android:label="@string/title_activity_recycler_view" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
