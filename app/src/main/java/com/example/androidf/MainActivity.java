@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.androidf.databinding.ActivityMainBinding;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 import com.next.easynavigation.view.EasyNavigationBar;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ActivityMainBinding mainBinding;
     ImageView mImageView;
     EasyNavigationBar tabar;
+    private TitleBar mTitleBar;
 
     private String[] titleList = {"首页", "发现", "消息", "我的"};
     //未选中icon
@@ -93,6 +96,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 })
                 .centerAsFragment(true)
                 .build();
+
+        mTitleBar = mainBinding.titleBar;
+        mTitleBar.setOnTitleBarListener(new OnTitleBarListener() {
+
+            @Override
+            public void onLeftClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+                ;
+            }
+
+            @Override
+            public void onRightClick(View view) {
+
+            }
+        });
+
 
 
     }
