@@ -73,7 +73,7 @@ dependencies {
     // 标题栏框架：https://github.com/getActivity/TitleBar
     implementation 'com.github.getActivity:TitleBar:9.2'
     // Android 常用工具库
-    implementation 'com.github.1993hzw:Androids:Tag'
+    implementation 'com.github.1993hzw:Androids:1.3'
     // 属性代码xml配置或者代码设置
     implementation 'com.github.qwasnm789:StateButton:1.0.1'
     // 权限请求框架：https://github.com/getActivity/XXPermissions

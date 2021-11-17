@@ -6,79 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/image"-->
-<!--        android:layout_width="200dp"-->
-<!--        android:layout_height="200dp"-->
-<!--        android:background="@color/black"-->
-<!--        android:scaleType="fitXY"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        />-->
-
-
-<!--    <Button-->
-<!--        android:id="@+id/login_btn"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="login"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/image" />-->
-
-
     <com.next.easynavigation.view.EasyNavigationBar
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/teal_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
-    </com.next.easynavigation.view.EasyNavigationBar>
+        app:layout_constraintBottom_toBottomOf="parent">
 
+
+    </com.next.easynavigation.view.EasyNavigationBar>
 
     <com.hjq.bar.TitleBar
         android:id="@+id/titleBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/back_view"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftIcon="@null"
         app:lineVisible="false"
-        android:visibility="gone"
-        app:title="自定义标题栏">
+        app:title="">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center_vertical"
-            android:orientation="horizontal" >
+            android:id="@+id/left_top_view"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginLeft="0dp"
+            android:gravity="start"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@mipmap/ic_launcher" />
+            <com.deadline.statebutton.StateButton
+                android:id="@+id/recommend_btn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="推荐"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16sp" />
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="10dp"
-                android:src="@mipmap/ic_launcher" />
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="10dp"
-                android:src="@mipmap/ic_launcher" />
+            <com.deadline.statebutton.StateButton
+                android:id="@+id/focus_btn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="关注"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16sp" />
+
+            <com.deadline.statebutton.StateButton
+                android:id="@+id/neighborhood_btn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="邻里"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </com.hjq.bar.TitleBar>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

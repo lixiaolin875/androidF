@@ -5,12 +5,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.androidf.databinding.ActivityMainBinding;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
+import com.hjq.toast.ToastUtils;
+import com.hjq.toast.style.BlackToastStyle;
 import com.next.easynavigation.view.EasyNavigationBar;
 
 import java.util.ArrayList;
@@ -20,14 +21,15 @@ import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button mBtn;
-    Button mLogin;
     ActivityMainBinding mainBinding;
-    ImageView mImageView;
     EasyNavigationBar tabar;
     TitleBar mTitleBar;
 
-    private final String[] titleList = {"首页", "发现", "消息", "我的"};
+    Button recommendBtn; // 推荐
+    Button focusBtn; // 关注
+    Button neighborhoodBtn; // 邻里
+
+    private final String[] titleList = {"首页", "集市", "消息", "我的"};
     //未选中icon
     private final int[] normalIcon = {R.drawable.icon_home, R.drawable.icon_shopbasket,
             R.drawable.icon_message, R.drawable.icon_user};
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int[] selectIcon = {R.drawable.logo_home_select, R.drawable.icon_shopbasket_select,
             R.drawable.icon_message_select, R.drawable.icon_user_select};
 
-
+    // TODO: 2021/11/17 - UI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,17 +45,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(mainBinding.getRoot());
 
-//        mBtn = findViewById(R.id.code_btn);
-//        mBtn.setOnClickListener(this);
+        recommendBtn = mainBinding.recommendBtn;
+        recommendBtn.setOnClickListener(this::onClick);
 
-//        mLogin = findViewById(R.id.login_btn);
-//        mLogin.setOnClickListener(this);
-//
-//        mImageView = mainBinding.image;
 
-        // 设置图片
-//        Glide.with(this).load("https://img1.baidu.com/it/u=2285471789,1398773469&fm=26&fmt=auto").placeholder(R.drawable.ic_launcher_background).into(mImageView);
 
+
+
+
+
+    }
+
+    /*
+    * 设置顶部导航栏
+    * */
+    private void initNavigationBar() {
         /// 沉浸式
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
@@ -62,6 +68,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             decorView.setSystemUiVisibility(option);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
+
+        mTitleBar = mainBinding.titleBar;
+        mTitleBar.setOnTitleBarListener(new OnTitleBarListener() {
+
+            @Override
+            public void onLeftClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+
+            @Override
+            public void onRightClick(View view) {
+
+            }
+        });
+    }
+
+    /*
+    * 设置底部导航栏
+    * */
+    private void initTabar() {
 
         ArrayList<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new HomeFragment());
@@ -104,32 +135,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 })
                 .centerAsFragment(true)
                 .build();
-
-        mTitleBar = mainBinding.titleBar;
-        mTitleBar.setOnTitleBarListener(new OnTitleBarListener() {
-
-            @Override
-            public void onLeftClick(View view) {
-
-            }
-
-            @Override
-            public void onTitleClick(View view) {
-
-            }
-
-            @Override
-            public void onRightClick(View view) {
-
-            }
-        });
-
-
     }
 
 
     @Override
     public void onClick(View v) {
+
+        if (v.getId() == R.id.recommend_btn) {
+
+            ToastUtils.setStyle(new BlackToastStyle());
+            ToastUtils.show("我是推荐");
+
+            recommendBtn.setTextSize(24.0f);
+
+        }
 
 //        if (v.getId() == R.id.code_btn) {
 //            HashMap<String, Object> hashMap = new HashMap<>();
