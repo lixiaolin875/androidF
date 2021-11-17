@@ -1,23 +1,22 @@
 package com.example.androidf;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.fragment.app.Fragment;
-
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.androidf.databinding.ActivityMainBinding;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.next.easynavigation.view.EasyNavigationBar;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,15 +25,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ActivityMainBinding mainBinding;
     ImageView mImageView;
     EasyNavigationBar tabar;
-    private TitleBar mTitleBar;
+    TitleBar mTitleBar;
 
-    private String[] titleList = {"首页", "发现", "消息", "我的"};
+    private final String[] titleList = {"首页", "发现", "消息", "我的"};
     //未选中icon
-    private int[] normalIcon = {R.drawable.icon_home, R.drawable.icon_shopbasket,
+    private final int[] normalIcon = {R.drawable.icon_home, R.drawable.icon_shopbasket,
             R.drawable.icon_message, R.drawable.icon_user};
     //选中时icon
-    private int[] selectIcon = {R.drawable.logo_home_select, R.drawable.icon_shopbasket_select,
-             R.drawable.icon_message_select, R.drawable.icon_user_select};
+    private final int[] selectIcon = {R.drawable.logo_home_select, R.drawable.icon_shopbasket_select,
+            R.drawable.icon_message_select, R.drawable.icon_user_select};
 
 
     @Override
@@ -54,6 +53,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // 设置图片
 //        Glide.with(this).load("https://img1.baidu.com/it/u=2285471789,1398773469&fm=26&fmt=auto").placeholder(R.drawable.ic_launcher_background).into(mImageView);
+
+        /// 沉浸式
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
 
         ArrayList<Fragment> fragments = new ArrayList<Fragment>();
         fragments.add(new HomeFragment());
@@ -89,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setOnCenterTabClickListener(new EasyNavigationBar.OnCenterTabSelectListener() {
                     @Override
                     public boolean onCenterTabSelectEvent(View view) {
-                        Toast.makeText(MainActivity.this, "ReSelect点击了center" , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "ReSelect点击了center", Toast.LENGTH_SHORT).show();
 
                         return false;
                     }
@@ -107,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onTitleClick(View view) {
-                ;
+
             }
 
             @Override
@@ -115,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-
 
 
     }

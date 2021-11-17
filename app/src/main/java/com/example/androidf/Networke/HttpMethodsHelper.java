@@ -1,6 +1,7 @@
 package com.example.androidf.Networke;
 
 import com.google.gson.Gson;
+import com.hjq.gson.factory.GsonFactory;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public class HttpMethodsHelper {
         _retrofit =
                 new Retrofit.Builder()
                         .baseUrl("https://c.dev.linylife.cn/api/")
-                        .addConverterFactory(GsonConverterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(GsonFactory.getSingletonGson()))
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .client(okClient.build())
                         .build();
@@ -78,6 +79,8 @@ public class HttpMethodsHelper {
 //            public TestBean apply(String s) throws Exception {
 //                Log.w(TAG, "apply--" + Thread.currentThread().getName());
 //                Gson gson = new Gson();
+//                获取单例的 Gson 对象（已处理容错）
+//                Gson gson = GsonFactory.getSingletonGson();
 //                TestBean currentUseInfo = gson.fromJson(s, TestBean.class);
 //                return currentUseInfo;
 //            }
@@ -96,6 +99,8 @@ public class HttpMethodsHelper {
 //            public TestBean apply(String s) throws Exception {
 //                Log.w(TAG, "apply--" + Thread.currentThread().getName());
 //                Gson gson = new Gson();
+//                获取单例的 Gson 对象（已处理容错）
+//                Gson gson = GsonFactory.getSingletonGson();
 //                TestBean currentUseInfo = gson.fromJson(s, TestBean.class);
 //                return currentUseInfo;
 //            }
@@ -114,7 +119,9 @@ public class HttpMethodsHelper {
     public RequestBody getRequestBody(HashMap<String, Object> hashMap) {
         StringBuffer data = new StringBuffer();
         if (hashMap != null && hashMap.size() > 0) {
-            Gson gson = new Gson();
+            // Gson gson = new Gson();
+            // 获取单例的 Gson 对象（已处理容错）
+            Gson gson = GsonFactory.getSingletonGson();
             String json = gson.toJson(hashMap);
             RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), json);
             return requestBody;
