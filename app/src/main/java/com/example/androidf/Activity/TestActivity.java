@@ -1,6 +1,4 @@
-package com.example.androidf;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.androidf.Activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -9,7 +7,14 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.androidf.Fragment.HomeFragment;
+import com.example.androidf.Fragment.MessageFragment;
+import com.example.androidf.Fragment.MineFragment;
+import com.example.androidf.R;
 import com.example.androidf.databinding.ActivityTestBinding;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class TestActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 

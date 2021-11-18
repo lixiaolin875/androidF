@@ -38,15 +38,15 @@
             android:value="640" />
 
         <activity
-            android:name=".TestActivity"
+            android:name=".Activity.TestActivity"
             android:exported="true" />
 
         <activity
-            android:name=".RecyclerViewActivity"
+            android:name=".Activity.RecyclerViewActivity"
             android:exported="true"
             android:label="@string/title_activity_recycler_view" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

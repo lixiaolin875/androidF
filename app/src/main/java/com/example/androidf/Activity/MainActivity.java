@@ -1,5 +1,6 @@
-package com.example.androidf;
+package com.example.androidf.Activity;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,17 +8,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.androidf.Fragment.BazaarFragment;
+import com.example.androidf.Fragment.ContentFragment;
+import com.example.androidf.Fragment.HomeFragment;
+import com.example.androidf.Fragment.MessageFragment;
+import com.example.androidf.Fragment.MineFragment;
+import com.example.androidf.R;
 import com.example.androidf.databinding.ActivityMainBinding;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
-import com.hjq.toast.ToastUtils;
-import com.hjq.toast.style.BlackToastStyle;
 import com.next.easynavigation.view.EasyNavigationBar;
 
 import java.util.ArrayList;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button recommendBtn; // 推荐
     Button focusBtn; // 关注
     Button neighborhoodBtn; // 邻里
+    int currentId;// 当前顶部选择按钮
 
     private final String[] titleList = {"首页", "集市", "消息", "我的"};
     //未选中icon
@@ -45,13 +53,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(mainBinding.getRoot());
 
+        /// 创建底部导航栏
+        initNavigationBar();
+        /// 创建顶部导航栏
+        initTabar();
+
         recommendBtn = mainBinding.recommendBtn;
         recommendBtn.setOnClickListener(this::onClick);
+        focusBtn = mainBinding.focusBtn;
+        focusBtn.setOnClickListener(this::onClick);
+        neighborhoodBtn = mainBinding.neighborhoodBtn;
+        neighborhoodBtn.setOnClickListener(this::onClick);
 
 
-
-
-
+        currentId = R.id.recommend_btn;
+        recommendBtn.setTextSize(24);
 
 
     }
@@ -138,17 +154,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setStatusBarDrawable(this,R.drawable.back_view);
+
+    }
+
+
+
     @Override
     public void onClick(View v) {
 
         if (v.getId() == R.id.recommend_btn) {
-
-            ToastUtils.setStyle(new BlackToastStyle());
-            ToastUtils.show("我是推荐");
-
-            recommendBtn.setTextSize(24.0f);
-
+            currentId = R.id.recommend_btn;
+        }else if (v.getId() == R.id.focus_btn) {
+            currentId = R.id.focus_btn;
+        }else if (v.getId() == R.id.neighborhood_btn) {
+            currentId = R.id.neighborhood_btn;
         }
+        recommendBtn.setTextSize(16);
+        focusBtn.setTextSize(16);
+        neighborhoodBtn.setTextSize(16);
+        if (currentId == R.id.recommend_btn) {
+            recommendBtn.setTextSize(24);
+        }else if (currentId == R.id.focus_btn) {
+            focusBtn.setTextSize(24);
+        }else if (currentId == R.id.neighborhood_btn) {
+            neighborhoodBtn.setTextSize(24);
+        }
+
 
 //        if (v.getId() == R.id.code_btn) {
 //            HashMap<String, Object> hashMap = new HashMap<>();
@@ -185,4 +221,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+    // TODO: 2021/11/18 private
+    /**
+     * 设置状态栏颜色背景图
+     * @param activity
+     * @param id
+     */
+    public static void setStatusBarDrawable(Activity activity, @DrawableRes int id) {
+        //利用反射机制修改状态栏背景
+        int identifier = activity.getResources().getIdentifier("statusBarBackground", "id", "android");
+        View statusBarView = activity.getWindow().findViewById(identifier);
+        if (statusBarView != null) {
+            statusBarView.setBackgroundResource(id);
+        }
+    }
+
 }

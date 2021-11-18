@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <com.next.easynavigation.view.EasyNavigationBar
         android:id="@+id/navigationBar"
@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start|center_vertical"
             android:layout_marginLeft="0dp"
-            android:gravity="start"
+            android:gravity="start|center_vertical"
             android:orientation="horizontal">
 
             <com.deadline.statebutton.StateButton
@@ -64,6 +64,34 @@
                 android:text="邻里"
                 android:textColor="@color/cardview_light_background"
                 android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:id="@+id/right_top_view"
+            android:gravity="start|center_vertical"
+            >
+            <com.deadline.statebutton.StateImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/search_home_btn"
+                android:src="@drawable/icon_scan"
+                />
+            <com.deadline.statebutton.StateImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginRight="0dp"
+                android:id="@+id/qr_home_btn"
+                android:src="@drawable/icon_search"
+                />
 
         </LinearLayout>
 

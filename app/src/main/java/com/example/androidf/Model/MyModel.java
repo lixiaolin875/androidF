@@ -1,4 +1,4 @@
-package com.example.androidf;
+package com.example.androidf.Model;
 
 public class MyModel {
 

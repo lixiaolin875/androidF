@@ -1,4 +1,4 @@
-package com.example.androidf;
+package com.example.androidf.Model;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.example.androidf.R;
 
 import java.util.ArrayList;
 import java.util.List;

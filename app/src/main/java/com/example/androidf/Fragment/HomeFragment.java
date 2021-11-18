@@ -1,4 +1,4 @@
-package com.example.androidf;
+package com.example.androidf.Fragment;
 
 import android.os.Bundle;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.androidf.R;
 
 import androidx.fragment.app.Fragment;
 

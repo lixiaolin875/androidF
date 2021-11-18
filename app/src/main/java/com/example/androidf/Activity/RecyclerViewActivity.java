@@ -1,16 +1,19 @@
-package com.example.androidf;
+package com.example.androidf.Activity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
+import com.example.androidf.Model.MyAdapter;
+import com.example.androidf.Model.MyModel;
+import com.example.androidf.R;
 import com.example.androidf.databinding.ActivityRecyclerViewBinding;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class RecyclerViewActivity extends AppCompatActivity {
 
