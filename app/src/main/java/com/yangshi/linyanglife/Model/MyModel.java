@@ -1,4 +1,4 @@
-package com.example.androidf.Model;
+package com.yangshi.linyanglife.Model;
 
 public class MyModel {
 

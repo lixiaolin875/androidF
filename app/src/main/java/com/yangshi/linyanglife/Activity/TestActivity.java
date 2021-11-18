@@ -1,4 +1,4 @@
-package com.example.androidf.Activity;
+package com.yangshi.linyanglife.Activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.example.androidf.Fragment.HomeFragment;
-import com.example.androidf.Fragment.MessageFragment;
-import com.example.androidf.Fragment.MineFragment;
-import com.example.androidf.R;
-import com.example.androidf.databinding.ActivityTestBinding;
+import com.yangshi.linyanglife.Fragment.HomeFragment;
+import com.yangshi.linyanglife.Fragment.MessageFragment;
+import com.yangshi.linyanglife.Fragment.MineFragment;
+import com.yangshi.linyanglife.R;
+import com.yangshi.linyanglife.databinding.ActivityTestBinding;
 
 import androidx.appcompat.app.AppCompatActivity;
 

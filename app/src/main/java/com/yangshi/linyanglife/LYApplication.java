@@ -1,4 +1,4 @@
-package com.example.androidf;
+package com.yangshi.linyanglife;
 
 import android.app.Application;
 
@@ -7,7 +7,7 @@ import com.hjq.toast.style.BlackToastStyle;
 
 /**
  * @author xl
- * @packageName com.example.androidf
+ * @packageName com.yangshi.androidf
  * @fileName LYApplication
  * @Copyright 2021/11/18
  * @des

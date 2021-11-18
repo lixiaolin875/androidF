@@ -1,4 +1,4 @@
-package com.example.androidf.Activity;
+package com.yangshi.linyanglife.Activity;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -8,25 +8,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.androidf.Fragment.BazaarFragment;
-import com.example.androidf.Fragment.ContentFragment;
-import com.example.androidf.Fragment.HomeFragment;
-import com.example.androidf.Fragment.MessageFragment;
-import com.example.androidf.Fragment.MineFragment;
-import com.example.androidf.R;
-import com.example.androidf.databinding.ActivityMainBinding;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.next.easynavigation.view.EasyNavigationBar;
+import com.yangshi.linyanglife.Adapter.SquareContentAdapter;
+import com.yangshi.linyanglife.Fragment.BazaarFragment;
+import com.yangshi.linyanglife.Fragment.ContentFragment;
+import com.yangshi.linyanglife.Fragment.HomeFragment;
+import com.yangshi.linyanglife.Fragment.MessageFragment;
+import com.yangshi.linyanglife.Fragment.MineFragment;
+import com.yangshi.linyanglife.Model.SquareContentModel;
+import com.yangshi.linyanglife.R;
+import com.yangshi.linyanglife.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class LYSquareActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivityMainBinding mainBinding;
     EasyNavigationBar tabar;
@@ -35,7 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button recommendBtn; // 推荐
     Button focusBtn; // 关注
     Button neighborhoodBtn; // 邻里
-    int currentId;// 当前顶部选择按钮
+    int currentId; // 当前顶部选择按钮
+    RecyclerView squareRecyclerView; // 广场RecyclerView
+    SquareContentAdapter squareAdapter; //
+    ArrayList<SquareContentModel> dataList;
 
     private final String[] titleList = {"首页", "集市", "消息", "我的"};
     //未选中icon
@@ -50,24 +57,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-
         setContentView(mainBinding.getRoot());
+        dataList = new ArrayList<>();
 
         /// 创建底部导航栏
         initNavigationBar();
+
         /// 创建顶部导航栏
         initTabar();
 
-        recommendBtn = mainBinding.recommendBtn;
-        recommendBtn.setOnClickListener(this::onClick);
-        focusBtn = mainBinding.focusBtn;
-        focusBtn.setOnClickListener(this::onClick);
-        neighborhoodBtn = mainBinding.neighborhoodBtn;
-        neighborhoodBtn.setOnClickListener(this::onClick);
+        /// 创建UI
+        creatUIKit();
 
 
-        currentId = R.id.recommend_btn;
-        recommendBtn.setTextSize(24);
 
 
     }
@@ -128,13 +130,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setOnTabClickListener(new EasyNavigationBar.OnTabClickListener() {
                     @Override
                     public boolean onTabSelectEvent(View view, int position) {
-                        Toast.makeText(MainActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LYSquareActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
                         return false;
                     }
 
                     @Override
                     public boolean onTabReSelectEvent(View view, int position) {
-                        Toast.makeText(MainActivity.this, "ReSelect点击了" + position, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LYSquareActivity.this, "ReSelect点击了" + position, Toast.LENGTH_SHORT).show();
                         return false;
                     }
                 })
@@ -144,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setOnCenterTabClickListener(new EasyNavigationBar.OnCenterTabSelectListener() {
                     @Override
                     public boolean onCenterTabSelectEvent(View view) {
-                        Toast.makeText(MainActivity.this, "ReSelect点击了center", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LYSquareActivity.this, "ReSelect点击了center", Toast.LENGTH_SHORT).show();
 
                         return false;
                     }
@@ -162,8 +164,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void creatUIKit() {
+
+        recommendBtn = mainBinding.recommendBtn;
+        recommendBtn.setOnClickListener(this::onClick);
+        focusBtn = mainBinding.focusBtn;
+        focusBtn.setOnClickListener(this::onClick);
+        neighborhoodBtn = mainBinding.neighborhoodBtn;
+        neighborhoodBtn.setOnClickListener(this::onClick);
 
 
+        currentId = R.id.recommend_btn;
+        recommendBtn.setTextSize(24);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
+
+        squareRecyclerView = mainBinding.squareRecycleView;
+
+        squareAdapter = new SquareContentAdapter(R.id.square_recycle_view, dataList);
+        squareRecyclerView.setAdapter(squareAdapter);
+
+    }
+
+
+    // TODO: 2021/11/18 Action
     @Override
     public void onClick(View v) {
 
@@ -195,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                @Override
 //                public void onNext(Object obj) {
 //                    super.onNext(obj);
-//                    Toast.makeText(MainActivity.this, "成功", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LYSquareActivity.this, "成功", Toast.LENGTH_SHORT).show();
 //                }
 //            });
 //        } else {
@@ -211,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                    HashMap<String, Object> resultMap = (HashMap<String, Object>) obj;
 //
-//                    Toast.makeText(MainActivity.this, resultMap.get("msg").toString(),
+//                    Toast.makeText(LYSquareActivity.this, resultMap.get("msg").toString(),
 //                            Toast.LENGTH_SHORT).show();
 //                }
 //            });

@@ -1,13 +1,13 @@
-package com.example.androidf.Activity;
+package com.yangshi.linyanglife.Activity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.example.androidf.Model.MyAdapter;
-import com.example.androidf.Model.MyModel;
-import com.example.androidf.R;
-import com.example.androidf.databinding.ActivityRecyclerViewBinding;
+import com.yangshi.linyanglife.Adapter.MyAdapter;
+import com.yangshi.linyanglife.Model.MyModel;
+import com.yangshi.linyanglife.R;
+import com.yangshi.linyanglife.databinding.ActivityRecyclerViewBinding;
 
 import java.util.ArrayList;
 

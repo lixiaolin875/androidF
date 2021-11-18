@@ -1,4 +1,4 @@
-package com.example.androidf;
+package com.yangshi.linyanglife;
 
 import org.junit.Test;
 

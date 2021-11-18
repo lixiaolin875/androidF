@@ -1,4 +1,4 @@
-package com.example.androidf.Fragment;
+package com.yangshi.linyanglife.Fragment;
 
 import androidx.fragment.app.Fragment;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.androidf.R;
+import com.yangshi.linyanglife.R;
 
 /**
  * A simple {@link Fragment} subclass.

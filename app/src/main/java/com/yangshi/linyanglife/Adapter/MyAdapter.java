@@ -1,19 +1,20 @@
-package com.example.androidf.Model;
-
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+package com.yangshi.linyanglife.Adapter;
 
 import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import com.example.androidf.R;
+import com.yangshi.linyanglife.Model.MyModel;
+import com.yangshi.linyanglife.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class MyAdapter extends BaseQuickAdapter<MyModel, BaseViewHolder> {
 
